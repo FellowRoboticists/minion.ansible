@@ -1,0 +1,5 @@
+# Vim files
+*.swp
+
+# Odd data laying around
+args

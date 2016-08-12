@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# This module provides tools for working with NVM
+
+# The arguments to the script are passed as a file
+# containing name value pairs
+args=$(cat $1 | sed 's/,//g')
+eval $args
+
+# echo "A = $value"
+# echo "B = $name"
+case "$action" in
+  install)
+    if [ -d ~/.nvm ]
+    then
+      echo "{ \"result\" : \"NVM already installed\", \"changed\" : false }"
+      exit 0
+    else
+      curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash > /dev/null 2>&1
+      if [ $? == 0 ]
+      then
+        echo "{ \"result\" : \"Installed NVM\", \"changed\" : true }"
+      else
+        echo "{ \"failed\" :true, \"msg\" : \"Error installing NVM\" }"
+        exit 1
+      fi
+    fi
+    ;;
+  setup)
+    if [ -z "$node_version" ]
+    then
+      echo "{ \"failed\" : true, \"msg\" : \"No node version specified\" }"
+      exit 1
+    else
+      source ~/.nvm/nvm.sh > /dev/null 2>&1 && nvm exec ${node_version} node -e 'console.log("test")' > /dev/null 2>&1
+      if [ $? == 0 ]
+      then
+        echo "{ \"result\" : \"Node ${node_version} already installed\", \"changed\" : false }"
+        exit 0
+      else
+        source ~/.nvm/nvm.sh > /dev/null 2>&1 && nvm install ${node_version} > /tmp/install_node.log 2>&1
+        if [ $? == 0 ]
+        then
+          echo "{ \"result\" : \"Node ${node_version} successfully installed\", \"changed\" : true }"
+          exit 0
+        else
+          echo "{ \"failed\" : true, \"msg\" : \"Error installing node ${node_version}\" }"
+          exit 1
+        fi
+      fi
+    fi
+    ;;
+  list)
+    echo "{ \"result\" : \"Going to list nodes\" }"
+    ;;
+  *)
+    echo "{ \"failed\" : true, \"msg\" : \"Invalid action specified\" }"
+    exit 1
+    ;;
+esac

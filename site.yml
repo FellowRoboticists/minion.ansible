@@ -1,0 +1,9 @@
+---
+# This playbook deploys the entire application, server and client.
+
+- name: apply common configuration to all nodes
+  hosts: all
+
+  roles:
+    - common
+
