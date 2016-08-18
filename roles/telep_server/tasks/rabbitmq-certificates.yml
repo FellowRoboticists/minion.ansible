@@ -1,0 +1,22 @@
+---
+# Tasks to put the required RabbitMQ certificates on the server.
+
+- name: RabbitMQ certificate directory
+  file: path=/etc/rabbitmq/certs state=directory owner=rabbitmq group=rabbitmq mode=0755
+  become: yes
+
+- name: RabbitMQ private key directory
+  file: path=/etc/rabbitmq/private state=directory owner=rabbitmq group=rabbitmq mode=0750
+  become: yes
+
+- name: install CA certificate for RabbitMQ
+  copy: src=st-ca.crt dest=/etc/rabbitmq/certs/st-ca.crt owner=rabbitmq group=rabbitmq mode=0644
+  become: yes
+
+- name: install self-signed certificate for RabbitMQ
+  copy: src=st-cert.pem dest=/etc/rabbitmq/certs/st-cert.pem owner=rabbitmq group=rabbitmq mode=0644
+  become: yes
+
+- name: install private key for certificate for RabbitMQ
+  copy: src=st-key.pem.ansible dest /etc/rabbitmq/private/st-key.pem owner=rabbitmq group=rabbitmq mode=0640
+  become: yes

@@ -11,5 +11,6 @@
 
 - include: directories.yml
 
-- name: copy a secret file
-  copy: src=secret_file dest=/tmp/secret_file
+- include: rabbitmq-certificates.yml
+
+- include: telep-certificates.yml

@@ -1,0 +1,28 @@
+---
+# Tasks to put the required telep certificates/keys on the server
+
+- name: telep certificates directory
+  file: path=/etc/telep/certs states=directory owner=telep group=telep mode=0755
+  become: yes
+
+- name: telep private key directory
+  file: path=/etc/telep/private states=directory owner=telep group=telep mode=0750
+  become: yes
+
+- name: telep certificate
+  copy: src=telep3-cert.pem dest=/etc/telep/certs/telep3-cert.pem owner=telep group=telep mode=0644
+  become: yes
+
+- name: telep private key
+  copy: src=telep3-key.pem.ansible dest=/etc/telep/private/telep3-key.pem owner=telep group=telep mode=0640
+
+- name: telep client certificate for RabbitMQ
+  copy: src=stc-cert.pem dest=/etc/telep/certs/stc-cert.pem owner=telep group=telep mode=0644
+  become: yes
+
+- name: telep private key for client certificate to RabbitMQ
+  copy: src=stc-key.pem.ansible dest=/etc/telep/private/stc-key.pem owner=telep group=telep mode=0640
+  become: yes
+
+- name: telep private key for signing JWT messages
+  copy: src=telep_rsa.ansible dest/etc/telep/private/telep_rsa owner=telep group=telep mode=0640
