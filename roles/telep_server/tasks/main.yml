@@ -1,0 +1,15 @@
+---
+# Tasks for all servers
+
+- name: install mongodb
+  apt: name=mongodb-server
+
+- name: install rabbitmq
+  apt: name=rabbitmq-server
+
+- include: users.yml
+
+- include: directories.yml
+
+- name: copy a secret file
+  copy: src=secret_file dest=/tmp/secret_file

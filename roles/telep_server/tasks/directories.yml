@@ -1,0 +1,14 @@
+---
+# Directories
+
+- name: root deployment directory
+  file: path=/var/www/telep state=directory owner=root group=deployers mode=2775
+  become: yes
+
+- name: releases directory
+  file: path=/var/www/telep/releases state=directory owner=root group=deployers mode=2775
+  become: yes
+
+- name: shared directory
+  file: path=/var/www/telep/shared state=directory owner=root group=deployers mode=2775
+  become: yes

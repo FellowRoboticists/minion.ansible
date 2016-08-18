@@ -1,14 +1,14 @@
 ---
 # Common tasks for all environments
 
-#- name: install curl
-  #apt: name=curl state=present
+- name: install curl
+  apt: name=curl state=present
 
 - name: install nvm
   nvm_tool: action=install
 
 - name: install node
-  nvm_tool: action=setup node_version=v4.1.0
+  nvm_tool: action=setup node_version=v6.1.0
 
 #- name: ping
   #ping:
