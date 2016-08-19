@@ -1,16 +1,20 @@
 ---
 # Variables
 
-    rabbitmq_cert_path: /etc/rabbitmq/certs
-    rabbitmq_private_path: /etc/rabbitmq/private
-    rabbitmq_ca_cert: st-ca.crt
-    rabbitmq_cert: st-cert.pem
-    rabbitmq_key: st-key.pem
-    telep_cert_path: /etc/telep/certs
-    telep_private_path: /etc/telep/private
-    telep_cert: telep3-cert.pem
-    telep_key: telep3-key.pem
-    telep_client_cert: stc-cert.pem
-    telep_client_key: stc-key.pem
-    telep_ssh_key: telep_rsa
+rabbitmq_cert_path: /etc/rabbitmq/certs
+rabbitmq_private_path: /etc/rabbitmq/private
+rabbitmq_ca_cert: st-ca.crt
+rabbitmq_cert: st-cert.pem
+rabbitmq_key: st-key.pem
+rabbitmq_user: rabbitmq
+rabbitmq_group: rabbitmq
 
+telep_cert_path: /etc/telep/certs
+telep_private_path: /etc/telep/private
+telep_cert: telep3-cert.pem
+telep_key: telep3-key.pem
+telep_client_cert: stc-cert.pem
+telep_client_key: stc-key.pem
+telep_ssh_key: telep_rsa
+telep_user: telep
+telep_group: telep

@@ -3,6 +3,7 @@
 
 - name: install curl
   apt: name=curl state=present
+  become: yes
 
 - name: install nvm
   nvm_tool: action=install

@@ -3,9 +3,11 @@
 
 - name: install mongodb
   apt: name=mongodb-server
+  become: yes
 
 - name: install rabbitmq
   apt: name=rabbitmq-server
+  become: yes
 
 - include: users.yml
 

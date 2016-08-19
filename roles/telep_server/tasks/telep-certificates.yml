@@ -2,27 +2,29 @@
 # Tasks to put the required telep certificates/keys on the server
 
 - name: telep certificates directory
-  file: path={{ telep_cert_path }} state=directory owner=telep group=telep mode=0755
+  file: path={{ telep_cert_path }} state=directory owner={{ telep_user }} group={{ telep_group }} mode=0755
   become: yes
 
 - name: telep private key directory
-  file: path={{ telep_private_path }} state=directory owner=telep group=telep mode=0750
+  file: path={{ telep_private_path }} state=directory owner={{ telep_user }} group={{ telep_group }} mode=0750
   become: yes
 
 - name: telep certificate
-  copy: src={{ telep_cert }} dest={{ telep_cert_path }}/{{ telep_cert }} owner=telep group=telep mode=0644
+  copy: src={{ telep_cert }} dest={{ telep_cert_path }}/{{ telep_cert }} owner={{ telep_user }} group={{ telep_group }} mode=0644
   become: yes
 
 - name: telep private key
-  copy: src={{ telep_key }}.ansible dest={{ telep_private_path }}/{{ telep_key }} owner=telep group=telep mode=0640
+  copy: src={{ telep_key }}.ansible dest={{ telep_private_path }}/{{ telep_key }} owner={{ telep_user }} group={{ telep_group }} mode=0640
+  become: yes
 
 - name: telep client certificate for RabbitMQ
-  copy: src={{ telep_client_cert }} dest={{ telep_cert_path }}/{{ telep_client_cert }} owner=telep group=telep mode=0644
+  copy: src={{ telep_client_cert }} dest={{ telep_cert_path }}/{{ telep_client_cert }} owner={{ telep_user }} group={{ telep_group }} mode=0644
   become: yes
 
 - name: telep private key for client certificate to RabbitMQ
-  copy: src={{ telep_client_key }}.ansible dest={{ telep_private_path }}/{{ telep_client_key }} owner=telep group=telep mode=0640
+  copy: src={{ telep_client_key }}.ansible dest={{ telep_private_path }}/{{ telep_client_key }} owner={{ telep_user }} group={{ telep_group }} mode=0640
   become: yes
 
 - name: telep private key for signing JWT messages
-  copy: src={{ telep_ssh_key }}.ansible dest={{ telep_private_path }}/{{ telep_ssh_key }} owner=telep group=telep mode=0640
+  copy: src={{ telep_ssh_key }}.ansible dest={{ telep_private_path }}/{{ telep_ssh_key }} owner={{ telep_user }} group={{ telep_group }} mode=0640
+  become: yes
