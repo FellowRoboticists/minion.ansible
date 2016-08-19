@@ -16,3 +16,5 @@
 - include: rabbitmq-certificates.yml
 
 - include: telep-certificates.yml
+
+- include: shared-files.yml

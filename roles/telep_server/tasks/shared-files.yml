@@ -1,0 +1,6 @@
+---
+# Tasks for shared files
+
+- name: get the environment-variables files out there
+  template: src=environment-variables dest=/var/www/telep/shared/config/environment-variables owner={{ telep_user }} group={{ telep_group }} mode=0640
+  become: yes
