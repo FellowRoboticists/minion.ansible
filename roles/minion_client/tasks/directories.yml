@@ -1,0 +1,18 @@
+---
+# Deployment directories for minion
+
+- name: root deployment directory
+  file: path=/var/www/minion state=directory owner=root group=deployers mode=2775
+  become: yes
+
+- name: releases directory
+  file: path=/var/www/minion/releases state=directory owner=root group=deployers mode=2775
+  become: yes
+
+- name: shared directory
+  file: path=/var/www/minion/shared state=directory owner=root group=deployers mode=2775
+  become: yes
+
+- name: shared config directory
+  file: path=/var/www/minion/shared/config state=directory owner=root group=deployers mode=2775
+  become: yes

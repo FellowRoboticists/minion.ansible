@@ -1,0 +1,10 @@
+---
+# Tasks for the minion clients
+
+- include: users.yml
+
+- include: directories.yml
+
+- include: minion-certificates.yml
+
+- include: shared-files.yml

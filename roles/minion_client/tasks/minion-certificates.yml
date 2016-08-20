@@ -1,0 +1,30 @@
+---
+# Minion's certificates and keys
+
+- name: set up minion certificate directory
+  file: path={{ minion_cert_path }} state=directory owner={{ minion_user }} group={{ minion_group }} mode=0755
+  become: yes
+
+- name: set up minion private key directory
+  file: path={{ minion_private_path }} state=directory owner={{ minion_user }} group={{ minion_group }} mode=0750
+  become: yes
+
+- name: install RabbitMQ CA certificate
+  copy: src={{ rabbitmq_ca_cert }} dest={{ minion_cert_path }}/{{ rabbitmq_ca_cert }} owner={{ minion_user }} group={{ minion_group }} mode=0644
+  become: yes
+
+- name: install RabbitMQ client certificate
+  copy: src={{ client_cert }} dest={{ minion_cert_path }}/{{ client_cert }} owner={{ minion_user }} group={{ minion_group }} mode=0644
+  become: yes
+
+- name: install RabbitMQ client key
+  copy: src={{ client_key }}.ansible dest={{ minion_private_path }}/{{ client_key }} owner={{ minion_user }} group={{ minion_group }} mode=0640
+  become: yes
+
+- name: install robot private key
+  copy: src={{ robot_key }}.ansible dest={{ minion_private_path }}/{{ robot_key }} owner={{ minion_user }} group={{ minion_group }} mode=0640
+  become: yes
+
+- name: install server public key
+  copy: src={{ server_key }} dest={{ minion_cert_path }}/{{ server_key }} owner={{ minion_user }} group={{ minion_group }} mode=0644
+  become: yes

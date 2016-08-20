@@ -12,3 +12,9 @@
 
   roles:
     - telep_server
+
+- name: set up the minion clients
+  hosts: clients
+
+  roles:
+    - minion_client

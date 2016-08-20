@@ -1,0 +1,14 @@
+---
+# Tasks for minion users
+
+- name: minion user
+  user: name=minion state=present system=yes shell=/bin/false groups=dialout append=yes
+  become: yes
+
+- name: deployers group
+  group: name=deployers state=present
+  become: yes
+
+- name: dsieh user groups
+  user: name=dsieh shell=/bin/bash groups=deployers append=yes
+  become: yes

@@ -1,5 +1,5 @@
 [clients]
-# raspberrypi ansible_user=pi
+agriman.local
 
 [servers]
 do-development

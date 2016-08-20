@@ -1,0 +1,8 @@
+RABBITMQ_CA_CERT={{ minion_cert_path }}/{{ rabbitmq_ca_cert }}
+CLIENT_CERT={{ minion_cert_path}}/{{ client_cert}}
+CLIENT_KEY={{ minion_private_path }}/{{ client_key }}
+RABBITMQ_URL=amqps://{{ rabbitMqUser }}:{{ rabbitMqPassword }}@do-development:5671
+SERIAL_PORT=/dev/ttyUSB0
+BAUD_RATE=57600
+ROBOT_PRIVATE_KEY={{ minion_private_path }}/{{ robot_key }}
+SERVER_PUBLIC_KEY={{ minion_cert_path }}/{{ server_key }}

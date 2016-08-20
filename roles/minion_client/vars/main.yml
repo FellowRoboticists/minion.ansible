@@ -1,0 +1,12 @@
+---
+# Variables
+
+minion_cert_path: /etc/minion/cert
+minion_private_path: /etc/minion/private
+rabbitmq_ca_cert: st-ca.crt
+client_cert: stc-cert.pem
+client_key: stc-key.pem
+robot_key: sarah_rsa
+server_key: telep_rsa.pub.pem
+minion_user: minion
+minion_group: minion

@@ -1,0 +1,6 @@
+---
+# Copy the configuration files out there
+
+- name: get the environment-variables files out there
+  template: src=environment-variables dest=/var/www/minion/shared/config/environment-variables owner={{ minion_user }} group={{ minion_group }} mode=0640
+  become: yes
