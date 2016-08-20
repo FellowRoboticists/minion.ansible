@@ -1,3 +1,9 @@
 NODE_ENV=production
 LOG_LEVEL=info
 JWT_SECRET={{ jwt_secret }}
+TELEP_PRIVATE_KEY=/etc/telep/private/telep_rsa
+TELEP_CLIENT_CERT=/etc/telep/certs/stc-cert.pem
+TELEP_CLIENT_KEY=/etc/telep/private/stc-key.pem
+TELEP_HTTPS_KEY=/etc/telep/private/telep3-key.pem
+TELEP_HTTPS_CERT=/etc/telep/certs/telep3-cert.pem
+RABBITMQ_CA_CERT=/etc/rabbitmq/certs/st-ca.crt
