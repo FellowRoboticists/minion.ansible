@@ -8,3 +8,5 @@
 - include: minion-certificates.yml
 
 - include: shared-files.yml
+
+- include: services.yml

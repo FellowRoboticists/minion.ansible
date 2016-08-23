@@ -1,0 +1,6 @@
+---
+# Set up the services
+
+- name: put the system service file out there for minion
+  copy: src=minion.service dest=/etc/systemd/system/minion.service owner=root group=root mode=0644
+  become: yes
