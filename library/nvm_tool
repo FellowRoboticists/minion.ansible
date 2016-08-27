@@ -82,12 +82,36 @@ installNode() {
   return $?
 }
 
+copyNodeToRoot() {
+  local version=$1
+
+  # Get the path to the NVM node we want to copy
+  source ~/.nvm/nvm.sh > /dev/null 2>&1 && export nodeLocation=$(nvm which ${version})
+
+  # Tease out just the base path
+  nodePath=${nodeLocation%/bin/node}
+
+  # Copy the bin, lib and share directories to the user local node.
+  cp -r ${nodePath}/{bin,lib,share} /usr/local/node
+
+  response \
+    $? \
+    "Node ${version} successfully copied" \
+    "Error copying node ${version}" \
+    true
+
+  return $?
+}
+
 case "$action" in
   install)
     installNVM
     ;;
   setup)
     installNode $node_version
+    ;;
+  copy)
+    copyNodeToRoot $node_version
     ;;
   *)
     failureResponse "Invalid action specified"

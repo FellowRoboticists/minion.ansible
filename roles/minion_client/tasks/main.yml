@@ -5,6 +5,9 @@
 
 - include: directories.yml
 
+- name: copy node to root
+  nvm_tool: action=copy node_version=v6.1.0
+
 - include: minion-certificates.yml
 
 - include: shared-files.yml
