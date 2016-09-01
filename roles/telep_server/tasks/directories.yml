@@ -16,3 +16,7 @@
 - name: shared config directory
   file: path=/var/www/telep/shared/config state=directory owner=root group=deployers mode=2775
   become: yes
+
+- name: local node installation
+  file: path=/usr/local/node state=directory owner=root group=deployers mode=2775
+  become: yes

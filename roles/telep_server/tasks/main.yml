@@ -13,6 +13,15 @@
 
 - include: directories.yml
 
+- name: install gulp NPM module
+  nvm_tool: action=npm_global node_version=v6.1.0 package=gulp
+
+- name: install bower NPM module
+  nvm_tool: action=npm_global node_version=v6.1.0 package=bower
+
+- name: copy node to root
+  nvm_tool: action=copy node_version=v6.1.0
+
 - include: rabbitmq-certificates.yml
 
 - include: telep-certificates.yml

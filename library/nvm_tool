@@ -103,6 +103,27 @@ copyNodeToRoot() {
   return $?
 }
 
+installGlobalNPMPackage() {
+  local version=$1
+  local packageName=$2
+
+  # Install the package only if it isn't already there
+  pkgExist=$(source ~/.nvm/nvm.sh > /dev/null 2>&1 && nvm exec $version npm list -g $packageName 2> /dev/null | grep $packageName)
+
+  if [ -z "$pkgExist" ]
+  then
+    source ~/.nvm/nvm.sh > /dev/null 2>&1 && nvm exec $version npm install -g $packageName > /dev/null 2>&1
+
+    response \
+      $? \
+      "Global NPM package '$packageName' installed." \
+      "Error installing NPM package '$packageName'." \
+      true
+  else
+    successResponse "Global package '$packageName' already installed" false
+  fi
+}
+
 case "$action" in
   install)
     installNVM
@@ -112,6 +133,9 @@ case "$action" in
     ;;
   copy)
     copyNodeToRoot $node_version
+    ;;
+  npm_global)
+    installGlobalNPMPackage $node_version $package
     ;;
   *)
     failureResponse "Invalid action specified"
