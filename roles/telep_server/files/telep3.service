@@ -1,0 +1,16 @@
+[Unit]
+Description=telep3 Server
+
+[Service]
+ExecStart=/usr/local/node/bin/node /var/www/telep/current/bin/www
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=telep
+EnvironmentFile=/var/www/telep/shared/config/environment-variables
+User=telep
+
+[Install]
+WantedBy=multi-user.target
+

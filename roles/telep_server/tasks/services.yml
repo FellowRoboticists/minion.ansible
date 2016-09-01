@@ -1,0 +1,6 @@
+---
+# Set up the services
+
+- name: put the systemd service file out there for telep
+  copy: src=telep3.service dest=/etc/systemd/system/telep3.service owner=root group=root mode=0644
+  become: yes
