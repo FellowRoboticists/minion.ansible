@@ -12,3 +12,11 @@
 - name: dsieh user groups
   user: name=dsieh shell=/bin/bash groups=deployers append=yes
   become: yes
+
+- name: add sudoers
+  copy: src=deployers.ansible dest=/etc/sudoers.d/deployers.tmp owner=root group=root mode=0440
+  become: yes
+
+- name: make sure the sudoers file is valid
+  shell: visudo -q -c -f /etc/sudoers.d/deployers.tmp && cp -f /etc/sudoers.d/deployers.tmp /etc/sudoers.d/deployers
+  become: yes
